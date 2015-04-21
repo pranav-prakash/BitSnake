@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40731A531AE5CF900083C522 /* Snake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40731A511AE5CF900083C522 /* Snake.cpp */; };
+		40731A561AE5CF960083C522 /* Food.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40731A541AE5CF960083C522 /* Food.cpp */; };
+		40731A591AE5CF9C0083C522 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40731A571AE5CF9C0083C522 /* GameManager.cpp */; };
 		40EF50C01AE5CEE200CE893C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40EF50BF1AE5CEE200CE893C /* main.cpp */; };
 		40EF50C21AE5CEE200CE893C /* BitSnake.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 40EF50C11AE5CEE200CE893C /* BitSnake.1 */; };
 /* End PBXBuildFile section */
@@ -25,6 +28,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		40731A511AE5CF900083C522 /* Snake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Snake.cpp; sourceTree = "<group>"; };
+		40731A521AE5CF900083C522 /* Snake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snake.h; sourceTree = "<group>"; };
+		40731A541AE5CF960083C522 /* Food.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Food.cpp; sourceTree = "<group>"; };
+		40731A551AE5CF960083C522 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		40731A571AE5CF9C0083C522 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
+		40731A581AE5CF9C0083C522 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		40EF50BC1AE5CEE200CE893C /* BitSnake */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BitSnake; sourceTree = BUILT_PRODUCTS_DIR; };
 		40EF50BF1AE5CEE200CE893C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		40EF50C11AE5CEE200CE893C /* BitSnake.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = BitSnake.1; sourceTree = "<group>"; };
@@ -61,6 +70,12 @@
 			isa = PBXGroup;
 			children = (
 				40EF50BF1AE5CEE200CE893C /* main.cpp */,
+				40731A521AE5CF900083C522 /* Snake.h */,
+				40731A511AE5CF900083C522 /* Snake.cpp */,
+				40731A551AE5CF960083C522 /* Food.h */,
+				40731A541AE5CF960083C522 /* Food.cpp */,
+				40731A581AE5CF9C0083C522 /* GameManager.h */,
+				40731A571AE5CF9C0083C522 /* GameManager.cpp */,
 				40EF50C11AE5CEE200CE893C /* BitSnake.1 */,
 			);
 			path = BitSnake;
@@ -117,6 +132,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40731A561AE5CF960083C522 /* Food.cpp in Sources */,
+				40731A591AE5CF9C0083C522 /* GameManager.cpp in Sources */,
+				40731A531AE5CF900083C522 /* Snake.cpp in Sources */,
 				40EF50C01AE5CEE200CE893C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +215,7 @@
 		40EF50C61AE5CEE200CE893C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = "-lncurses";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -204,6 +223,7 @@
 		40EF50C71AE5CEE200CE893C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = "-lncurses";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -227,6 +247,7 @@
 				40EF50C71AE5CEE200CE893C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
