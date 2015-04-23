@@ -40,7 +40,7 @@ void GameManager::changeDirOnKeypress(Snake &snakeSprite)
             snakeSprite.setDirection(4);
             break;
     }
-    
+
     snakeSprite.updatePosition();
 }
 
@@ -58,22 +58,61 @@ void GameManager::updateIfWasEaten(Food &foodSprite, Snake &snakeSprite)
     }
 }
 
-int GameManager::getCurrentScore()
+void GameManager::redrawScene(Snake &snakeSprite, Food &foodSprite)
 {
-    return totalPoints;
+
+    // Output
+    erase();
+    foodSprite.redraw();
+
+    if (!snakeSprite.successfulDraw())
+    {
+        GameManager::endGame();
+    }
+
+    mvprintw(0, 0, "Your score is %i. 'Ctrl-C' to quit.\n", GameManager::getCurrentScore());
+    refresh();
 }
 
-void GameManager::addPoint()
+void GameManager::updateGameFrame(Snake &snakeSprite, Food &foodSprite)
 {
-    totalPoints++;
+    changeDirOnKeypress(snakeSprite);
+    updateIfWasEaten(foodSprite, snakeSprite);
+    checkBounds(snakeSprite);
+    redrawScene(snakeSprite, foodSprite);
 }
 
-bool GameManager::hasGameEnded()
+void GameManager::checkBounds(Snake &snakeSprite)
 {
-    return gameEnded;
+
+    if (snakeSprite.isOutOfBounds())
+    {
+        endGame();
+    }
 }
 
-void GameManager::endGame()
+void GameManager::displayScoreOnLose()
 {
-    gameEnded = true;
+    timeout(-1);
+    erase();
+    mvprintw(0, 0, "Game Over! Total score was %i.\n", getCurrentScore());
+    refresh();
+    getch(); // wait for input
+}
+
+void GameManager::doGame()
+{
+    initializeDisplay();
+
+    Food foodSprite;
+    Snake snakeSprite;
+
+    while (!hasGameEnded())
+    {
+        updateGameFrame(snakeSprite, foodSprite);
+    }
+
+    displayScoreOnLose();
+
+    endwin();
 }

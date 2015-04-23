@@ -29,8 +29,8 @@ public:
     void generateNewFoodPos();
     std::pair<int, int> getFoodPos();
     void redraw();
-    
-    bool wasEatenBy(Snake& sn);
+
+    bool wasEatenBy(Snake &sn);
 };
 
 #endif /* defined(__BitSnake__Food__) */

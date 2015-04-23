@@ -22,14 +22,35 @@ private:
     static int totalPoints;
     static bool gameEnded;
 
-public:
+    static int getCurrentScore()
+    {
+        return totalPoints;
+    }
+    static void addPoint()
+    {
+        totalPoints++;
+    }
+
+    static bool hasGameEnded()
+    {
+        return gameEnded;
+    }
+
+    static void endGame()
+    {
+        gameEnded = true;
+    }
+
     static void initializeDisplay();
-    static int getCurrentScore();
-    static void addPoint();
-    static bool hasGameEnded();
-    static void endGame();
     static void changeDirOnKeypress(Snake &snakeSprite);
     static void updateIfWasEaten(Food &foodSprite, Snake &snakeSprite);
+    static void checkBounds(Snake &snakeSprite);
+    static void redrawScene(Snake &snakeSprite, Food &foodSprite);
+    static void updateGameFrame(Snake &snakeSprite, Food &foodSprite);
+    static void displayScoreOnLose();
+
+public:
+    static void doGame();
 };
 
 #endif /* defined(__BitSnake__GameManager__) */

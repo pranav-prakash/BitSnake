@@ -19,22 +19,6 @@ Snake::Snake()
     setDirection(2);
 }
 
-/// Returns position of snake head
-std::pair<int, int> Snake::getPos()
-{
-    return segments.front();
-}
-
-void Snake::updateTail()
-{
-    segments.pop_back();
-}
-
-void Snake::updateHead(std::pair<int, int> pos)
-{
-    segments.push_front(pos);
-}
-
 bool Snake::successfulDraw()
 {
     std::pair<int, int> curPos = getPos();
@@ -82,16 +66,4 @@ void Snake::updatePosition()
     }
 
     updateHead(std::make_pair(curX, curY));
-}
-
-
-/// Direction of snake : 1 is up, 2 is right, 3 is down, 4 is left
-int Snake::getDirection()
-{
-    return direction;
-}
-
-void Snake::setDirection(int newDir)
-{
-    direction = newDir;
 }

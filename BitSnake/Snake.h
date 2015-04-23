@@ -17,26 +17,42 @@ class Snake
 private:
     /// Pair stores x, y coordinates of each of the segments
     std::list<std::pair<int, int>> segments;
+
     int direction;
 
-    void updateHead(std::pair<int, int> pos);
+    void updateHead(std::pair<int, int> pos)
+    {
+        segments.push_front(pos);
+    }
+
+    /// Direction of snake : 1 is up, 2 is right, 3 is down, 4 is left
+    int getDirection()
+    {
+        return direction;
+    }
 
 public:
     Snake();
 
-    std::pair<int, int> getPos();
+    /// Returns position of snake head
+    std::pair<int, int> getPos()
+    {
+        return segments.front();
+    }
+
+    void updateTail()
+    {
+        segments.pop_back();
+    }
+
+    void setDirection(int newDir)
+    {
+        direction = newDir;
+    }
 
     void updatePosition();
-
     bool isOutOfBounds();
-
     bool successfulDraw();
-
-    int getDirection();
-    
-    void updateTail();
-    
-    void setDirection(int newDir);
 };
 
 #endif /* defined(__BitSnake__Snake__) */
