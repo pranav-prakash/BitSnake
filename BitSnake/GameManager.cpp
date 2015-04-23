@@ -8,7 +8,10 @@
 
 #include "GameManager.h"
 
-GameManager::GameManager()
+int GameManager::totalPoints = 0;
+bool GameManager::gameEnded = false;
+
+void GameManager::initializeDisplay()
 {
     // Initialize curses gui
     initscr();
@@ -18,7 +21,42 @@ GameManager::GameManager()
     timeout(100);
 }
 
-int GameManager::totalPoints = 0;
+void GameManager::changeDirOnKeypress(Snake &snakeSprite)
+{
+    // Input
+    int ch = getch();
+    switch (ch)
+    {
+        case KEY_UP:
+            snakeSprite.setDirection(1);
+            break;
+        case KEY_RIGHT:
+            snakeSprite.setDirection(2);
+            break;
+        case KEY_DOWN:
+            snakeSprite.setDirection(3);
+            break;
+        case KEY_LEFT:
+            snakeSprite.setDirection(4);
+            break;
+    }
+    
+    snakeSprite.updatePosition();
+}
+
+void GameManager::updateIfWasEaten(Food &foodSprite, Snake &snakeSprite)
+{
+    if (!foodSprite.wasEatenBy(snakeSprite))
+    {
+        snakeSprite.updateTail();
+    }
+
+    if (foodSprite.wasEatenBy(snakeSprite))
+    {
+        foodSprite.generateNewFoodPos();
+        addPoint();
+    }
+}
 
 int GameManager::getCurrentScore()
 {
@@ -28,4 +66,14 @@ int GameManager::getCurrentScore()
 void GameManager::addPoint()
 {
     totalPoints++;
+}
+
+bool GameManager::hasGameEnded()
+{
+    return gameEnded;
+}
+
+void GameManager::endGame()
+{
+    gameEnded = true;
 }

@@ -12,73 +12,33 @@
 using namespace std;
 
 
-
 int main(int argc, const char *argv[])
 {
-    GameManager snakeGame;
-    Food snakeFood;
-    Snake gameSnake;
+    GameManager::initializeDisplay();
     
-    bool gameEnded = false;
+    Food foodSprite;
+    Snake snakeSprite;
     
-    int curDir = 2;
-    
-    while (!gameEnded)
+    while (!GameManager::hasGameEnded())
     {
+
+        GameManager::changeDirOnKeypress(snakeSprite);
         
-        // Logic
-        std::pair<int, int> logic = gameSnake.getPos();
-        int curX = logic.first;
-        int curY = logic.second;
+        GameManager::updateIfWasEaten(foodSprite, snakeSprite);
         
-        // Input
-        int ch = getch();
-        switch (ch)
+        if (snakeSprite.isOutOfBounds())
         {
-            case KEY_UP:
-                curDir = 1;
-                break;
-            case KEY_RIGHT:
-                curDir = 2;
-                break;
-            case KEY_DOWN:
-                curDir = 3;
-                break;
-            case KEY_LEFT:
-                curDir = 4;
-                break;
-            case 'q':
-                gameEnded = true;
-                break;
-        }
-        
-        switch (curDir)
-        {
-            case 1 : curY--; break;
-            case 2 : curX++; break;
-            case 3 : curY++; break;
-            case 4 : curX--; break;
-        }
-        
-        
-        gameSnake.addHead(make_pair(curX, curY));
-    
-        snakeFood.didEat(gameSnake);
-        
-        
-        if (curY > getmaxy(stdscr) || curX > getmaxx(stdscr) || curY < 0 || curX < 0)
-        {
-            gameEnded = true;
+            GameManager::endGame();
             break;
         }
         
         // Output
         erase();
-        snakeFood.redraw();
+        foodSprite.redraw();
         
-        if (!gameSnake.successfulDraw(make_pair(curX, curY)))
+        if (!snakeSprite.successfulDraw())
         {
-            gameEnded = true;
+            GameManager::endGame();
         }
         
         mvprintw(0, 0, "You got %i points. 'q' to quit.\n", GameManager::getCurrentScore());

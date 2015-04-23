@@ -15,26 +15,23 @@ Food::Food() : gen(std::random_device()())
 
 void Food::generateNewFoodPos()
 {
-    std::uniform_int_distribution<> xRand(0, getmaxx(stdscr));
+    std::uniform_int_distribution<> xRand(2, getmaxx(stdscr) - 2);
     foodPos.first = xRand(gen);
-    std::uniform_int_distribution<> yRand(0, getmaxy(stdscr));
+    std::uniform_int_distribution<> yRand(2, getmaxy(stdscr) - 2);
     foodPos.second = yRand(gen);
 }
 
-void Food::didEat(Snake &gameSnake)
+std::pair<int, int> Food::getFoodPos()
 {
-    if (gameSnake.getPos() == foodPos)
-    {
-        generateNewFoodPos();
-        GameManager::addPoint();
-    }
-    else
-    {
-        gameSnake.removeTail();
-    }
+    return foodPos;
 }
 
 void Food::redraw()
 {
     mvaddch(foodPos.second, foodPos.first, 'X');
+}
+
+bool Food::wasEatenBy(Snake &sn)
+{
+    return sn.getPos() == getFoodPos();
 }

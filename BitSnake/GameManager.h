@@ -12,17 +12,24 @@
 #include <ncurses.h>
 #include <time.h>
 
+#include "Food.h"
+
+class Snake;
+
 class GameManager
 {
 private:
     static int totalPoints;
+    static bool gameEnded;
+
 public:
-    
-    GameManager();
-    
+    static void initializeDisplay();
     static int getCurrentScore();
     static void addPoint();
+    static bool hasGameEnded();
+    static void endGame();
+    static void changeDirOnKeypress(Snake &snakeSprite);
+    static void updateIfWasEaten(Food &foodSprite, Snake &snakeSprite);
 };
-
 
 #endif /* defined(__BitSnake__GameManager__) */

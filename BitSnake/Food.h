@@ -12,8 +12,10 @@
 #include <utility>
 #include <ncurses.h>
 #include <random>
+
+class GameManager;
+
 #include "Snake.h"
-#include "GameManager.h"
 
 class Food
 {
@@ -25,10 +27,10 @@ public:
     Food();
 
     void generateNewFoodPos();
-
-    void didEat(Snake &gameSnake);
-
+    std::pair<int, int> getFoodPos();
     void redraw();
+    
+    bool wasEatenBy(Snake& sn);
 };
 
 #endif /* defined(__BitSnake__Food__) */

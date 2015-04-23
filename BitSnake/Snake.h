@@ -15,18 +15,28 @@
 class Snake
 {
 private:
-    std::list<std::pair<int, int>> snakes;
+    /// Pair stores x, y coordinates of each of the segments
+    std::list<std::pair<int, int>> segments;
+    int direction;
+
+    void updateHead(std::pair<int, int> pos);
 
 public:
     Snake();
 
     std::pair<int, int> getPos();
 
-    void removeTail();
+    void updatePosition();
 
-    void addHead(std::pair<int, int> pos);
+    bool isOutOfBounds();
 
-    bool successfulDraw(std::pair<int, int> cur);
+    bool successfulDraw();
+
+    int getDirection();
+    
+    void updateTail();
+    
+    void setDirection(int newDir);
 };
 
 #endif /* defined(__BitSnake__Snake__) */
