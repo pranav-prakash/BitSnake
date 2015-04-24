@@ -25,12 +25,6 @@ private:
         segments.push_front(pos);
     }
 
-    /// Direction of snake : 1 is up, 2 is right, 3 is down, 4 is left
-    int getDirection()
-    {
-        return direction;
-    }
-
 public:
     Snake();
 
@@ -43,6 +37,13 @@ public:
     void updateTail()
     {
         segments.pop_back();
+    }
+    
+    
+    /// Direction of snake : 1 is up, 2 is right, 3 is down, 4 is left
+    int getDirection()
+    {
+        return direction;
     }
 
     void setDirection(int newDir)

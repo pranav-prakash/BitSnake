@@ -18,29 +18,30 @@ void GameManager::initializeDisplay()
     noecho();
     curs_set(0);
     keypad(stdscr, TRUE);
-    timeout(100);
+    timeout(50);
 }
 
 void GameManager::changeDirOnKeypress(Snake &snakeSprite)
 {
     // Input
     int ch = getch();
+    int newDir = snakeSprite.getDirection();
     switch (ch)
     {
         case KEY_UP:
-            snakeSprite.setDirection(1);
+            newDir = 1;
             break;
         case KEY_RIGHT:
-            snakeSprite.setDirection(2);
+            newDir = 2;
             break;
         case KEY_DOWN:
-            snakeSprite.setDirection(3);
+            newDir = 3;
             break;
         case KEY_LEFT:
-            snakeSprite.setDirection(4);
+            newDir = 4;
             break;
     }
-
+    snakeSprite.setDirection((newDir%2 == snakeSprite.getDirection()%2)?snakeSprite.getDirection():newDir);
     snakeSprite.updatePosition();
 }
 
